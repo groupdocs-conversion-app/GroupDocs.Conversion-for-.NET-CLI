@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<Version>24.5.0</Version>
+		<AssemblyName>groupdocs-conversion</AssemblyName>
+		<StrongNameKeyId>GroupDocsConversionCli</StrongNameKeyId>
+		<SignAssembly>true</SignAssembly>
+		<RootNamespace>GroupDocs.Conversion.Cli</RootNamespace>
+		<PackageId>GroupDocs.Conversion-CLI</PackageId>
+		<IsPackable>true</IsPackable>
+		<PackAsTool>true</PackAsTool>
+		<ToolCommandName>groupdocs-conversion</ToolCommandName>
+		<PackageOutputPath>./nupkg</PackageOutputPath>
+		<NuspecProperties>version=$(Version)</NuspecProperties>
+		<NuspecFile>groupdocs-conversion-cli.nuspec</NuspecFile>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<PackageIcon>images\icon.png</PackageIcon>
+		<PreserveCompilationContext>true</PreserveCompilationContext>
+		<PreserveCompilationReferences>true</PreserveCompilationReferences>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="GroupDocs.Conversion" Version="24.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\GroupDocs.Conversion.Cli.Common\GroupDocs.Conversion.Cli.Common.csproj" />
+	  <ProjectReference Include="..\GroupDocs.Conversion.Cli.Utils\GroupDocs.Conversion.Cli.Utils.csproj" />
+	</ItemGroup>
+</Project>

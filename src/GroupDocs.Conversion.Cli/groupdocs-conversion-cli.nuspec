@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>GroupDocs.Conversion-CLI</id>
+    <version>$version$</version>
+    <authors>GroupDocs</authors>
+    <owners>GroupDocs</owners>
+    <projectUrl>https://github.com/groupdocs-conversion-app/GroupDocs.Conversion-for-.NET-CLI</projectUrl>
+    <icon>Resources\icon.png</icon>
+    <license type="expression">MIT</license>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>
+GroupDocs.Conversion CLI - dotnet tool to convert over 170 file and document types.
+
+Supported document formats:
+    * Portable Document Formats - PDF (PDF/A-1a, PDF/A-1b, PDF/A-2a), XPS, OXPS, TEX;
+    * Microsoft Word® Documents - DOC, DOCX, DOCM, DOT, DOTX, DOTM, RTF, TXT, VCF;
+    * Apple SpreadSheets - NUMBERS;
+    * Microsoft Excel® Spreadsheets - XLS, XLSX, XLSM, XLSB, CSV, TSV, XLAM, XLTX, FODS, SXC, SpreadsheetML;
+    * Microsoft PowerPoint® Presentations - PPT, PPTX, PPS, PPSX, PPTM, POTX, POT, POTM, PPSM;
+    * Microsoft Visio® Diagrams - VSD, VSDX, VSS, VST, VSTX, VSTM, VSSX, VSSM, VSX, VTX, VDW, VDX, SVG, SVGZ, VSDM;
+    * Microsoft Project® Formats- MPP, MPT, MPX;
+    * Microsoft OneNote® Formats - ONE;
+    * Microsoft Outlook® Formats - PST, OST;
+    * Open Document Formats - ODT, FODG, ODG, OTG, FODT, OTT, ODS, OTS, FODP, ODP, OTP;
+    * Archive Formats - ZIP, TAR, BZ2, GZ, RAR, 7-Zip, XZ, TXZ, TGZ;
+    * CAD Formats - DXF, DWG, DWT, STL, IFC, DWF, DGN, PLT, HPG, OBJ, CF2, IGS;
+    * Ebook Formats - EPUB, MOBI;
+    * Image Formats - CDR, CMX, TIFF, TIF, JPG, JPEG, PNG, GIF, BMP, ICO, TGA, JP2, J2C, J2K, JPF, JPX, JPM, DIF, WMF, WMZ, EMF, EMZ, WEBP, DJVU, CGM, PCL, PSD, PSB, DCM, PS, EPS, DIB;
+    * Email Formats - EML, EMLX, MSG, MBox, NSF;
+    * Markup Formats - HTM, HTML, MHT, MHTML, XML;
+    * Programming Language Formats - AS, AS3, ASM, BAT, C, CC, CMAKE, CPP, CS, VB, CSS, CXX, DIFF, ERB, GROOVY, H, HAML, HH, JAVA, JS, JSON, LESS, LOG, M, MAKE, MD, ML, MM, PHP, PL, PROPERTIES, PY, RB, RST, SASS, SCALA, SCM, SCRIPT, SH, SML, SQL, VIM, YAML, PS1, PSD1, PSM1.
+    * Web formats - CHM;
+
+For more details on the GroupDocs.Conversion for .NET API, please visit product website at:
+https://products.groupdocs.com/conversion
+
+Note: GroupDocs.Conversion for .NET will run in evaluation mode. In order to test full features of the product, please request a free 30-day temporary license.
+
+    </description>
+   <summary>Convert documents, intuitive and powerful GroupDocs.Conversion dotnet tool CLI.</summary>
+   <copyright>©Aspose Pty Ltd 2001-2024. All Rights Reserved.</copyright>
+   <tags>
+    Document-Conversion CLI Html-Conversion Image-Conversion PDF-Conversion
+    Doc-Conversion PDF Word Excel PowerPoint EMail Image PDF DOC DOCX NUMBERS XLS XLSX PPT PPTX TIFF PNG JPG
+   </tags>
+    <packageTypes>
+      <packageType name="DotnetTool" />
+    </packageTypes>
+  </metadata>
+  <files>
+    <file src="Resources\icon.png" target="Resources\" />
+    <file src="obj\DotnetToolSettings.xml" target="tools\net6.0\any\DotnetToolSettings.xml" />
+    <file src="bin\Release\net6.0\publish\**" target="tools\net6.0\any" />
+  </files>
+</package>

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GroupDocs.Conversion.Cli": {
+      "commandName": "Project",
+      "commandLineArgs": "convert -s d:\\history.txt -t d:\\history.pdf"
+    }
+  }
+}
