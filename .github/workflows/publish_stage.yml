@@ -17,9 +17,15 @@ jobs:
       - name: Build
         run: dotnet build -c Release src/GroupDocs.Conversion.Cli/GroupDocs.Conversion.Cli.csproj
       
-      - name: Pack
-        run: dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg --no-build -c Release src/GroupDocs.Conversion.Cli/GroupDocs.Conversion.Cli.csproj -o .
+      - name: Get current datetime
+        id: datetime
+        run: echo "##[set-output name=datetime;]$(date +'%Y%m%d%H%M%S')"
 
+      - name: Pack
+        run: 
+          suffix=$(echo "${{ steps.datetime.outputs.datetime }}")
+          dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg -p:VersionSuffix=$suffix --no-build -c Release src/GroupDocs.Conversion.Cli/GroupDocs.Conversion.Cli.csproj -o .
+      
       - name: Write cert
         env:
           PFX_IN_BASE64: ${{ secrets.PFX_IN_BASE64 }}
