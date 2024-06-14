@@ -25,7 +25,7 @@ internal class GetDocumentInfoCommand: Command
         var licenseSetter = new LicenseSetter(parsed);
         licenseSetter.SetLicense();
 
-        using(var converter = new Converter(source))
+        using(var converter = ConverterFactory.GetConfiguredConverter(source))
         {
             var info = converter.GetDocumentInfo();
             PrintInfo(info);

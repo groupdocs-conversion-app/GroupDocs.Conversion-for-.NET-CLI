@@ -102,7 +102,7 @@ internal class ConvertCommand : Command
 
         var sourceFileName = Path.GetFileNameWithoutExtension(source);
 
-        using (var converter = GetConfiguredConverter(source))
+        using (var converter = ConverterFactory.GetConfiguredConverter(source))
         {
             var convertOptions = converter.GetPossibleConversions()[targetFormat].ConvertOptions;
             converter.Convert(_ => new MemoryStream(),
@@ -116,20 +116,9 @@ internal class ConvertCommand : Command
         }
     }
 
-    private static Converter GetConfiguredConverter(string source)
-    {
-        var settings = new ConverterSettings();
-        if (CommandContext.IsVerbose())
-        {
-            settings.Logger = new CliLogger();
-        }
-
-        return new Converter(source, () => settings);
-    }
-
     private void ConvertToFile(string source, string target)
     {
-        using (var converter = GetConfiguredConverter(source))
+        using (var converter = ConverterFactory.GetConfiguredConverter(source))
         {
             var extension = Path.GetExtension(target);
             var convertOptions = converter.GetPossibleConversions()[extension].ConvertOptions;
