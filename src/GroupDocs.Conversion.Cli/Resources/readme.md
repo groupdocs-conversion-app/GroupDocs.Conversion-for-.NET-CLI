@@ -31,11 +31,6 @@ See the [Features overview](https://docs.groupdocs.com/conversion/net/features-o
 - Linux: Ubuntu, OpenSUSE, CentOS and others.
 - Mac OS X Catalina (10.15) and later.
 
-If you build applications for Linux and macOS, we recommend using [GroupDocs.Conversion.CrossPlatform](https://www.nuget.org/packages/GroupDocs.Conversion.CrossPlatform) package instead of this one. `GroupDocs.Conversion.CrossPlatform` does not use on `System.Drawing.Common` as a graphical subsystem, [which is only supported on Windows](https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/6.0/system-drawing-common-windows-only).
-
-See the [System requirements](https://docs.groupdocs.com/conversion/net/system-requirements/) documentation topic for more details.
-
-
 ## Supported formats
 
 - Documents: PDF, XPS, TEX
