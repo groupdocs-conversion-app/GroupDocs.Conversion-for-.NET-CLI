@@ -30,7 +30,7 @@ Set `output-directory` parameter to specify where the converted files will be st
 groupdocs-conversion convert --source source.docx --output-directory ./converted --target-format png
 ```
 
-Type `get-document-info` to retrieve document of the source filename:
+Type `get-document-info` to retrieve document info of the source filename:
 
 ```bash
 groupdocs-conversion get-document-info --source source.docx

@@ -7,6 +7,7 @@
     <owners>GroupDocs</owners>
     <projectUrl>https://github.com/groupdocs-conversion-app/GroupDocs.Conversion-for-.NET-CLI</projectUrl>
     <icon>Resources\icon.png</icon>
+    <readme>Resources\readme.md</readme>
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>
