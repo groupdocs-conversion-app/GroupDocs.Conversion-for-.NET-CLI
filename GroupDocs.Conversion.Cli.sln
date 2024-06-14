@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupDocs.Conversion.Cli.Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupDocs.Conversion.Cli.Utils", "src\GroupDocs.Conversion.Cli.Utils\GroupDocs.Conversion.Cli.Utils.csproj", "{196D925D-7844-4762-97B5-F9469418A754}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupDocs.Conversion.Cli.Tests", "src\GroupDocs.Conversion.Cli.Tests\GroupDocs.Conversion.Cli.Tests.csproj", "{0862E2A7-6DE2-4310-BC9A-CD22DFDE9C3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{196D925D-7844-4762-97B5-F9469418A754}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{196D925D-7844-4762-97B5-F9469418A754}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{196D925D-7844-4762-97B5-F9469418A754}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0862E2A7-6DE2-4310-BC9A-CD22DFDE9C3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0862E2A7-6DE2-4310-BC9A-CD22DFDE9C3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0862E2A7-6DE2-4310-BC9A-CD22DFDE9C3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0862E2A7-6DE2-4310-BC9A-CD22DFDE9C3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
