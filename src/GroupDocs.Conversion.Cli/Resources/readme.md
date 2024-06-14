@@ -7,6 +7,8 @@
 [Product Page](https://products.groupdocs.com/conversion/net/) | [Docs](https://docs.groupdocs.com/conversion/net/) | [Demos](https://products.groupdocs.app/conversion/family) | [API Reference](https://reference.groupdocs.com/conversion/net/) | [Examples](https://github.com/groupdocs-conversion/GroupDocs.Conversion-for-.NET) | [Blog](https://blog.groupdocs.com/category/conversion/) | [Releases](https://releases.groupdocs.com/conversion/net/) | [Free Support](https://forum.groupdocs.com/c/conversion) | [Temporary License](https://purchase.groupdocs.com/temporary-license/)
 
 
+CLI - Command Line Interface for `GroupDocs.Conversion for .NET` document conversion and automation API.
+
 `GroupDocs.Conversion` is a class-library that enables you to build seamless document conversion applications for mobile, web, and desktop platforms using C#, F#, or VB.NET. It supports more than 10 000 combinations for converting popular file formats in HTML, PNG, JPEG, and PDF. Our library is self-sufficient and doesn't depend on any third-party software, such as Microsoft Word, OpenOffice, or other office suites.
 
 ## Features 
@@ -65,7 +67,7 @@ See the [Supported file formats](https://docs.groupdocs.com/conversion/net/suppo
 2. Install dotnet tool by running `dotnet tool install --global GroupDocs.Conversion-CLI`
 3. You can run GroupDocs.Conversion.CLI by using command `groupdocs-conversion`
 
-GroupDocs.Conversion CLI is also distributed as self-contained executable.
+GroupDocs.Conversion CLI is also distributed as a self-contained executable.
 
 ## Example usage
 
