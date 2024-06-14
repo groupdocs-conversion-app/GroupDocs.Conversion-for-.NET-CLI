@@ -13,17 +13,16 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 6.0.x
-      
-      - name: Build
-        run: dotnet build -c Release src/GroupDocs.Conversion.Cli/GroupDocs.Conversion.Cli.csproj
-      
+
       - name: Get current datetime
         id: datetime
         run: echo "datetime=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
-
+      
+      - name: Build
+        run: dotnet build -c Release -p:VersionSuffix=${{ env.datetime }} src/GroupDocs.Conversion.Cli/GroupDocs.Conversion.Cli.csproj
+      
       - name: Pack
         run: 
-          suffix=$(echo "${{ steps.datetime.outputs.datetime }}")
           dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg -p:VersionSuffix=${{ env.datetime }} --no-build -c Release src/GroupDocs.Conversion.Cli/GroupDocs.Conversion.Cli.csproj -o .
       
       - name: Write cert
