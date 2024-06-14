@@ -19,11 +19,11 @@ jobs:
         run: echo "datetime=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
       
       - name: Build
-        run: dotnet build -c Release -p:VersionSuffix=${{ env.datetime }} src/GroupDocs.Conversion.Cli/GroupDocs.Conversion.Cli.csproj
+        run: dotnet build -c Release src/GroupDocs.Conversion.Cli/GroupDocs.Conversion.Cli.csproj
       
       - name: Pack
         run: 
-          dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg -p:VersionSuffix=${{ env.datetime }} --no-build -c Release src/GroupDocs.Conversion.Cli/GroupDocs.Conversion.Cli.csproj -o .
+          dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg -p:VersionSuffix=alpha-${{ env.datetime }} --no-build -c Release src/GroupDocs.Conversion.Cli/GroupDocs.Conversion.Cli.csproj -o .
       
       - name: Write cert
         env:
