@@ -1,11 +1,12 @@
 name: Publish Prod
 
 on:
-  workflow_dispatch:  
+  workflow_dispatch:
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
 
     steps:
       - name: Checkout code
@@ -54,8 +55,8 @@ jobs:
       - name: Publish distributable (Windows)
         run: dotnet publish --configuration Release -p:PublishSingleFile=false -p:RuntimeIdentifier=win-x64 --self-contained --output ./publish/win
 
-      #- name: Publish distributable (Linux)
-      #  run: dotnet publish --configuration Release -p:PublishSingleFile=false -p:RuntimeIdentifier=linux-x64 --self-contained --output ./publish/linux
+      - name: Publish distributable (Linux)
+        run: dotnet publish --configuration Release -p:PublishSingleFile=false -p:RuntimeIdentifier=linux-x64 --self-contained --output ./publish/linux
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -84,12 +85,12 @@ jobs:
           asset_name: windows-distributable
           asset_content_type: application/zip
 
-      # - name: Upload Release Asset (Linux)
-      #   uses: actions/upload-release-asset@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     upload_url: ${{ steps.create_release.outputs.upload_url }}
-      #     asset_path: ./publish/linux
-      #     asset_name: linux-distributable
-      #     asset_content_type: application/zip
+      - name: Upload Release Asset (Linux)
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./publish/linux
+          asset_name: linux-distributable
+          asset_content_type: application/zip
