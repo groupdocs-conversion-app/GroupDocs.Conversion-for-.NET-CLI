@@ -26,7 +26,7 @@ public class CommandLineTests : BaseConsoleTests
 
         DeleteFileIfExists(target);
 
-        string result = CallCliApplication(new string[] { "convert", "-s", source, "-f", target });
+        string result = CallCliApplication(new[] { "convert", "-s", source, "-f", target });
         Assert.IsTrue(result.Contains("The document has been converted"));
         Assert.IsFalse(result.Contains("[TRACE] Determine loaded for source document"));
     }
@@ -40,7 +40,7 @@ public class CommandLineTests : BaseConsoleTests
 
         DeleteFileIfExists(target);
 
-        string result = CallCliApplication(new string[] { "convert", "-s", source, "-f", target, parameter });
+        string result = CallCliApplication(new[] { "convert", "-s", source, "-f", target, parameter });
 
         Assert.IsTrue(result.Contains("[TRACE] Determine loaded for source document"));
     }
@@ -70,7 +70,7 @@ public class CommandLineTests : BaseConsoleTests
     {
         List<Parameter> parameters = GetAllParameters();
 
-        string result = CallCliApplication(new string[] { "convert", "-h" });
+        string result = CallCliApplication(new[] { "convert", "-h" });
 
         foreach (Parameter parameter in parameters)
         {
@@ -112,7 +112,7 @@ public class CommandLineTests : BaseConsoleTests
                 x.Name != "timeout" &&
                 x.Name != "verbose").ToList();
 
-        string result = CallCliApplication(new string[] { "get-document-info", "-h" });
+        string result = CallCliApplication(new[] { "get-document-info", "-h" });
 
         foreach (Parameter parameter in parameters)
         {
@@ -124,11 +124,11 @@ public class CommandLineTests : BaseConsoleTests
     private List<Parameter> GetAllParameters()
     {
         var type = typeof(Parameter);
-        var types = Assembly.GetAssembly(typeof(Parameter))
+        var types = Assembly.GetAssembly(typeof(Parameter))?
             .GetTypes()
             .Where(p => type.IsAssignableFrom(p) && !p.IsAbstract)
-            .Select(x => Activator.CreateInstance(x) as Parameter).ToList();
+            .Select(x => (Activator.CreateInstance(x) as Parameter)!).ToList();
 
-        return types;
+        return types ?? new List<Parameter>();
     }
 }
