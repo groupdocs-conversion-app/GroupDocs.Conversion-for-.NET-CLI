@@ -1,5 +1,4 @@
 ﻿using GroupDocs.Conversion.Cli.Common;
-using GroupDocs.Conversion.Cli.Logging;
 using GroupDocs.Conversion.Cli.Parameters;
 using GroupDocs.Conversion.Cli.Utils;
 using GroupDocs.Conversion.Exceptions;
@@ -83,7 +82,6 @@ internal class ConvertCommand : Command
 
                 ConvertToDirectory(source, outputDirectory, targetFormat);
                 Reporter.Output.WriteLine($"The document has been converted to {outputDirectory}");
-                return;
             }
 
         }
@@ -105,14 +103,14 @@ internal class ConvertCommand : Command
         using (var converter = ConverterFactory.GetConfiguredConverter(source))
         {
             var convertOptions = converter.GetPossibleConversions()[targetFormat].ConvertOptions;
-            converter.Convert(_ => new MemoryStream(),
-                (_, _, page, convertedStream) =>
+            converter.Convert(convertOptions,
+                convertedContext =>
                 {
-                    using (var fileStream = File.Create(Path.Combine(outputDirectory, $"{sourceFileName}_{page}.{targetFormat.Extension}")))
+                    using (var fileStream = File.Create(Path.Combine(outputDirectory, $"{sourceFileName}_{convertedContext.Page}.{targetFormat.Extension}")))
                     {
-                        convertedStream.CopyTo(fileStream);
+                        convertedContext.ConvertedStream.CopyTo(fileStream);
                     }
-                },convertOptions);
+                });
         }
     }
 
