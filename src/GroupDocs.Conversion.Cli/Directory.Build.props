@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <VersionPrefix>24.10.0</VersionPrefix>
+    <VersionPrefix>24.11.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <VersionSeparator Condition="'$(VersionSuffix)' != ''">-</VersionSeparator>
     <Version>$(VersionPrefix)$(VersionSeparator)$(VersionSuffix)</Version>
