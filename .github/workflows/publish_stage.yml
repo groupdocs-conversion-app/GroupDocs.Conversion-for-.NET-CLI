@@ -55,5 +55,5 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()  # Ensures artifacts are uploaded even if the job fails
         with:
-          name: debug-logs
-          path: ./output/        
+          name: nuget-packages
+          path: ./*.nupkg        
