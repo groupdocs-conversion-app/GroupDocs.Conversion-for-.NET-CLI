@@ -50,3 +50,10 @@ jobs:
         env:
           NUGET_TOKEN: ${{ secrets.NUGET_API_KEY_STAGE }}
         run: dotnet nuget push *.nupkg -s https://apiint.nugettest.org/v3/index.json -k ${NUGET_TOKEN} --skip-duplicate 
+
+      - name: Upload logs or outputs
+        uses: actions/upload-artifact@v4
+        if: always()  # Ensures artifacts are uploaded even if the job fails
+        with:
+          name: debug-logs
+          path: ./output/        
