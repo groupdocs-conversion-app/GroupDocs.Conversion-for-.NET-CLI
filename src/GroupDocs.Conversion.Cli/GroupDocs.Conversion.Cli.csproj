@@ -25,7 +25,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="GroupDocs.Conversion" Version="25.5" />
+	  <PackageReference Include="GroupDocs.Conversion" Version="25.6" />
 	</ItemGroup>
 
 	<ItemGroup>
