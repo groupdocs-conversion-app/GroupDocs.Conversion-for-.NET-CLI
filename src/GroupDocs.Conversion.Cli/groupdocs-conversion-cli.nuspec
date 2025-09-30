@@ -53,7 +53,6 @@ Note: GroupDocs.Conversion for .NET will run in evaluation mode. In order to tes
     <file src="Resources\icon.png" target="Resources\" />
     <file src="Resources\readme.md" target="Resources\" />
 
-    <file src="obj\DotnetToolSettings.xml" target="tools\net6.0\any\DotnetToolSettings.xml" />
     <file src="bin\Release\net6.0\publish\*" target="tools\net6.0\any" />
   </files>
 </package>
