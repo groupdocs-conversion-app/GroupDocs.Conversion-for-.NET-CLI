@@ -23,33 +23,43 @@ jobs:
       
       - name: Pack
         run: 
-          dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg -p:VersionSuffix=alpha-${{ env.datetime }} --no-build -c Release src/GroupDocs.Conversion.Cli/GroupDocs.Conversion.Cli.csproj -o .
+          dotnet pack --include-symbols -p:SymbolPackageFormat=snupkg -p:VersionSuffix=alpha-${{ env.datetime }} --no-build -c Release src/GroupDocs.Conversion.Cli/GroupDocs.Conversion.Cli.csproj -o ./build_out
       
-      - name: Write cert
-        env:
-          PFX_IN_BASE64: ${{ secrets.PFX_IN_BASE64 }}
-          PFX_PATH: ${{ secrets.PFX_PATH }}
-        run: echo "${PFX_IN_BASE64}" | base64 --decode > ${PFX_PATH}
+      - name: Download CodeSignTool
+        run: |
+          wget -O codesign.zip https://github.com/SSLcom/CodeSignTool/releases/download/v1.3.0/CodeSignTool-v1.3.0-linux.zip
       
-      - name: Sign
-        env: 
-          PFX_PATH: ${{ secrets.PFX_PATH }}
-          PFX_PWD: ${{ secrets.PFX_PWD }}
-          PFX_TMS: ${{ secrets.PFX_TMS }}
-        run: dotnet nuget sign *.nupkg --certificate-path ${PFX_PATH} --certificate-password ${PFX_PWD} --timestamper ${PFX_TMS} 
+      - name: Unpack CodeSignTool
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/code_sign"
+          unzip -q codesign.zip -d "$GITHUB_WORKSPACE/code_sign"
+      
+      - name: Configure CodeSignTool
+        run: |
+          confPath="$GITHUB_WORKSPACE/code_sign/conf/code_sign_tool.properties"
+          if [ -f "$confPath" ]; then rm -f "$confPath"; fi
+          cat > "$confPath" << EOF
+          CLIENT_ID=kaXTRACNijSWsFdRKg_KAfD3fqrBlzMbWs6TwWHwAn8
+          OAUTH2_ENDPOINT=https://login.ssl.com/oauth2/token
+          CSC_API_ENDPOINT=https://cs.ssl.com
+          TSA_URL=http://ts.ssl.com
+          TSA_LEGACY_URL=http://ts.ssl.com/legacy
+          EOF
 
-      - name: Verify
-        run: dotnet nuget verify *.nupkg
+      - name: Prepare artifacts directory
+        run: |
+          mkdir -p "$GITHUB_WORKSPACE/artifacts"
+          find "$GITHUB_WORKSPACE/build_out" -type f ! -name "*.nupkg" -exec mv {} "$GITHUB_WORKSPACE/artifacts/" \; 2>/dev/null || true
 
-      - name: Remove cert
-        env: 
-           PFX_PATH: ${{ secrets.PFX_PATH }}
-        run: rm $PFX_PATH
-        
+      - name: Sign packages with SSL.com eSigner
+        working-directory: ${{ github.workspace }}/code_sign
+        run: |
+          java -Xmx1024M -jar "./jar/code_sign_tool-1.3.0.jar" batch_sign -username="${{ secrets.ES_USERNAME }}" -password="${{ secrets.ES_PASSWORD }}" -totp_secret="${{ secrets.ES_TOTP_SECRET }}" -input_dir_path="$GITHUB_WORKSPACE/build_out" -output_dir_path="$GITHUB_WORKSPACE/artifacts"
+   
       - name: Publish
         env:
           NUGET_TOKEN: ${{ secrets.NUGET_API_KEY_STAGE }}
-        run: dotnet nuget push *.nupkg -s https://apiint.nugettest.org/v3/index.json -k ${NUGET_TOKEN} --skip-duplicate 
+        run: dotnet nuget push ./artifacts/*.nupkg -s https://apiint.nugettest.org/v3/index.json -k ${NUGET_TOKEN} --skip-duplicate 
 
       - name: Upload logs or outputs
         uses: actions/upload-artifact@v4
