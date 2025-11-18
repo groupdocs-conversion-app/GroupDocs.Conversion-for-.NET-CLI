@@ -70,4 +70,4 @@ jobs:
         if: always()  # Ensures artifacts are uploaded even if the job fails
         with:
           name: nuget-packages
-          path: ./*.nupkg        
+          path: ./artifacts/*.nupkg        
