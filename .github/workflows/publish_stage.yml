@@ -27,7 +27,7 @@ jobs:
       
       - name: Download CodeSignTool
         run: |
-          wget -O codesign.zip https://github.com/SSLcom/CodeSignTool/releases/download/v1.3.0/CodeSignTool-v1.3.0-linux.zip
+          wget -O codesign.zip https://github.com/SSLcom/CodeSignTool/releases/download/v1.3.0/CodeSignTool-v1.3.0.zip
       
       - name: Unpack CodeSignTool
         run: |
