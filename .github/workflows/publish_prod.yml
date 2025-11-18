@@ -36,12 +36,12 @@ jobs:
       
       - name: Unpack CodeSignTool
         run: |
-          mkdir -p "$GITHUB_WORKSPACE/code_sign"
-          unzip -q codesign.zip -d "$GITHUB_WORKSPACE/code_sign"
+          mkdir -p ./code_sign
+          unzip -q codesign.zip -d ./code_sign
       
       - name: Configure CodeSignTool
         run: |
-          confPath="$GITHUB_WORKSPACE/code_sign/conf/code_sign_tool.properties"
+          confPath="./code_sign/conf/code_sign_tool.properties"
           if [ -f "$confPath" ]; then rm -f "$confPath"; fi
           cat > "$confPath" << EOF
           CLIENT_ID=kaXTRACNijSWsFdRKg_KAfD3fqrBlzMbWs6TwWHwAn8
@@ -53,8 +53,8 @@ jobs:
 
       - name: Prepare artifacts directory
         run: |
-          mkdir -p "$GITHUB_WORKSPACE/artifacts"
-          find "$GITHUB_WORKSPACE/build_out" -type f ! -name "*.nupkg" -exec mv {} "$GITHUB_WORKSPACE/artifacts/" \;
+          mkdir -p ./artifacts
+          find ./build_out -type f ! -name "*.nupkg" -exec mv {} ./artifacts/ \;
 
       - name: Sign packages with SSL.com eSigner
         working-directory: ${{ github.workspace }}/code_sign
@@ -63,7 +63,7 @@ jobs:
           ES_PASSWORD: ${{ secrets.ES_PASSWORD }}
           ES_TOTP_SECRET: ${{ secrets.ES_TOTP_SECRET }}
         run: |
-          java -Xmx1024M -jar "./jar/code_sign_tool-1.3.0.jar" batch_sign -username="$ES_USERNAME" -password="$ES_PASSWORD" -totp_secret="$ES_TOTP_SECRET" -input_dir_path="$GITHUB_WORKSPACE/build_out" -output_dir_path="$GITHUB_WORKSPACE/artifacts"
+          java -Xmx1024M -jar "./jar/code_sign_tool-1.3.0.jar" batch_sign -username="$ES_USERNAME" -password="$ES_PASSWORD" -totp_secret="$ES_TOTP_SECRET" -input_dir_path="../build_out" -output_dir_path="../artifacts"
     
       - name: Publish Nuget
         env:
